@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends ML</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script>
+        window.onload = function () {
+            var fileInput = document.getElementById('file');
+            var sexInput = document.getElementById('sex');
+            var ageInput = document.getElementById('age');
+            var submitButton = document.getElementById('submit');
+
+            function checkInputs() {
+                if (fileInput.value && sexInput.value && ageInput.value) {
+                    submitButton.disabled = false;
+                } else {
+                    submitButton.disabled = true;
+                }
+            }
+
+            file.addEventListener('change', checkInputs);
+            sexInput.addEventListener('change', checkInputs);
+            ageInput.addEventListener('change', checkInputs);
+        };
+    </script>
+</head>
+
+<body>
+    
+    <div class="container" style="display: flex; justify-content: space-around;">
+        
+        <section class="cyberpunk">
+            <h1>Trends Scanner</h1>
+            
+            <form action="/" method="post" enctype="multipart/form-data">
+                <input type="file" id="file" name="filename" required>
+                <h4><span style="color: red;">Warning:</span> File extension must be .csv</h4>
+
+                <br>
+                <select id="sex" name="sex" required>
+                    <option value="" disabled selected>Option</option>
+                    <option value="male" name="">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                
+                <br>
+                <input type="number" id="age" name="age" placeholder="Age" required/>
+        
+        
+                <button class="cybr-btn" id="submit">
+                    Scan<span aria-hidden></span>
+                    <span aria-hidden class="cybr-btn__glitch">Scan</span>
+                    <span aria-hidden class="cybr-btn__tag">CITE</span>
+                </button>
+            </form>
+        
+        </section>
+        <section class="cyberpunk">
+            <h1>Analysis</h1>
+            <p class="cyberpunk inverse scannedv" style="height: 55vh; width: 45vw;word-wrap: break-word;">
+                Data Extracted: {{ data }}<br><br>
+                Conclusion:<br>
+                {{ extracted_data[0] }}<br>
+                {{ extracted_data[1] }}<br>
+                {{ extracted_data[2] }}
+            
+            </p>
+
+        </section>
+
+    </div>
+    
+    
+
+    
+</body>
+
+</html>
